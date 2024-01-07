@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web technology lab 5</title>
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+        }
+        span {
+            color: red;
+            margin-left: 6rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: lighter;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-g">
+        <form method="post">
+            username : <input type="text" name="username" id="username" required oninput="clearErrors()"><br>
+            <span id="user-error"></span><br>
+            password : <input type="password" name="password" id="password" required oninput="clearErrors()"><br>
+            <span id="pass-error"></span><br>
+            <button id="btn" type="submit">submit</button>
+        </form>
+    </div>
+    <script>
+        var pass_error = document.getElementById("pass-error");
+        var user_error = document.getElementById("user-error");
+        var btn = document.getElementById("btn");
+
+        btn.addEventListener("click", (e) => {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (!validateUsername(username)) {
+                e.preventDefault();
+                user_error.innerHTML = "please enter a valid username!";
+            }
+            if (!validatePassword(password)) {
+                e.preventDefault();
+                pass_error.innerHTML = "please enter a valid password!";
+            }
+        });
+
+        function validateUsername(username) {
+            return (username == "") ? false : true;
+        }
+
+        function validatePassword(password) {
+            var regex = /^[A-Z].*@$/i;
+            return regex.test(password);
+        }
+
+        function clearErrors() {
+            pass_error.innerHTML = "";
+            user_error.innerHTML = "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web technology lab 4</title>
+    <style>
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image_container center" onmouseover="sdet()" onmouseout="cdet()">
+      <img src="./gtrr34.jpg" alt="gtr r34" width="500px" />
+    </div>
+    <div class="car_detail center">
+      <p class="c_d"></p>
+    </div>
+    <script>
+      var cdElement = document.querySelector(".c_d");
+
+      function sdet() {
+        cdElement.innerHTML = "Nissan GTR R34";
+      }
+
+      function cdet() {
+        cdElement.innerHTML = "Nissan with RB26DETT";
+      }
+    </script>
+  </body>
+</html>
