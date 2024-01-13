@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Book Details</title>
+  </head>
+  <body>
+    <script>
+      // Function to load XML and XSL files and display the result
+      function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            displayResult(this.responseXML);
+          }
+        };
+        xhttp.open("GET", "book_details.xml", true);
+        xhttp.send();
+      }
+
+      // Function to transform and display the result using XSLT
+      function displayResult(xml) {
+        var xsltProcessor = new XSLTProcessor();
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "transform_books.xsl", false);
+        xhttp.send(null);
+        xsltProcessor.importStylesheet(xhttp.responseXML);
+        var resultDocument = xsltProcessor.transformToFragment(xml, document);
+        document.body.appendChild(resultDocument);
+      }
+
+      // Load the XML and display the result when the page loads
+      window.onload = function () {
+        loadXMLDoc();
+      };
+    </script>
+  </body>
+</html>
